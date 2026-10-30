@@ -1,0 +1,30 @@
+
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "C : Compiler avec OpenSSL",
+            "type": "process",
+            "command": "C:/msys64/ucrt64/bin/gcc.exe",
+            "args": [
+                "-Wall",
+                "-Wextra",
+                "-g3",
+                "-IC:/msys64/ucrt64/include",
+                "${file}",
+                "-o",
+                "${fileDirname}/output/${fileBasenameNoExtension}.exe",
+                "-LC:/msys64/ucrt64/lib",
+                "-lcrypto"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": ["$gcc"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
