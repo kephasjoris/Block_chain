@@ -1,13 +1,9 @@
-
+#include "common.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <time.h>
 #include <openssl/sha.h>
-
-#define HASH_SIZE 32
-#define HASH_HEX 65
-#define MAX_BLOCKS 5
 
 typedef struct {
     int index;

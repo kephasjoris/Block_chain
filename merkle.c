@@ -1,14 +1,10 @@
-
+#include "common.h"
 #include <stdio.h>
 #include <string.h>
 #include <openssl/sha.h>
 
-#define MAX_TRANSACTIONS 10
-#define HASH_SIZE 32
-#define HASH_HEX_SIZE 65
-
 // Calcule le hash SHA-256 d'une chaine
-void sha256(const char *data, char output[HASH_HEX_SIZE]) {
+void sha256(const char *data, char output[HASH_HEX]) {
     unsigned char hash[HASH_SIZE];
     const char hex[] = "0123456789abcdef";
 
@@ -23,14 +19,14 @@ void sha256(const char *data, char output[HASH_HEX_SIZE]) {
 }
 
 // Construit l'arbre et retourne sa racine
-void merkle_root(char hashes[][HASH_HEX_SIZE], int count,
-                 char root[HASH_HEX_SIZE]) {
+void merkle_root(char hashes[][HASH_HEX], int count,
+                 char root[HASH_HEX]) {
     if (count == 0) {
         sha256("", root);
         return;
     }
 
-    char current[MAX_TRANSACTIONS][HASH_HEX_SIZE];
+    char current[MAX_TRANSACTIONS][HASH_HEX];
 
     for (int i = 0; i < count; i++) {
         strcpy(current[i], hashes[i]);
@@ -42,8 +38,8 @@ void merkle_root(char hashes[][HASH_HEX_SIZE], int count,
         for (int i = 0; i < count; i += 2) {
             int right = (i + 1 < count) ? i + 1 : i;
 
-            char combined[HASH_HEX_SIZE * 2];
-            char result[HASH_HEX_SIZE];
+            char combined[HASH_HEX * 2];
+            char result[HASH_HEX];
 
             strcpy(combined, current[i]);
             strcat(combined, current[right]);
@@ -67,8 +63,8 @@ int main(void) {
     };
 
     int count = 4;
-    char hashes[MAX_TRANSACTIONS][HASH_HEX_SIZE];
-    char root[HASH_HEX_SIZE];
+    char hashes[MAX_TRANSACTIONS][HASH_HEX];
+    char root[HASH_HEX];
 
     printf("=== ARBRE DE MERKLE EN C ===\n\n");
 

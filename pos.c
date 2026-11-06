@@ -1,13 +1,9 @@
-
+#include "common.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
 #include <openssl/sha.h>
-
-#define HASH_SIZE 32
-#define HASH_HEX 65
-#define MAX_VALIDATORS 5
 
 typedef struct {
     char name[30];
@@ -107,13 +103,7 @@ double validate_block_pos(Block *block,
 }
 
 int main(void) {
-    Validator validators[MAX_VALIDATORS] = {
-        {"Alice", 50.0},
-        {"Bob", 30.0},
-        {"Claire", 15.0},
-        {"David", 4.0},
-        {"Emma", 1.0}
-    };
+    Validator validators[MAX_VALIDATORS] = INITIAL_VALIDATORS;
 
     Block block = {0};
 
