@@ -6,7 +6,7 @@
 #define MAX_TRANSACTIONS 10
 #define HASH_SIZE 32
 #define HASH_HEX_SIZE 65
-
+ 
 // Calcule le hash SHA-256 d'une chaine
 void sha256(const char *data, char output[HASH_HEX_SIZE]) {
     unsigned char hash[HASH_SIZE];
